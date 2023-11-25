@@ -3,7 +3,7 @@ class ProductApiList {
   String? title;
   String? description;
   int? price;
-  double? discountPercentage;
+  String? discountPercentage;
   String? rating;
   int? stock;
   String? brand;
@@ -29,7 +29,7 @@ class ProductApiList {
     title = json['title'];
     description = json['description'];
     price = json['price'];
-    discountPercentage = json['discountPercentage'];
+    discountPercentage = json['discountPercentage'].toString();
     rating = json['rating'].toString();
     stock = json['stock'];
     brand = json['brand'];
