@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:practice2/rest_api/practice/product_api_screen.dart';
+import 'package:practice2/rest_api/practice/get_api_data.dart';
 
 //Future<void>
 void main() =>
@@ -32,7 +32,7 @@ class _MyAppState extends State<MyApp> {
         // child:
         const MaterialApp(
       //   //home: ExampleFour(),
-      home: ProductApiScreen(),
+      home: GetDataApiScreen(),
       // home: PracApiScreen(),
     );
   }

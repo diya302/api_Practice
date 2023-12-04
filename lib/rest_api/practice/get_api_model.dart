@@ -1,61 +1,106 @@
-class Status {
-  String? status;
-  List<Data>? data;
-  String? message;
+class EntriesData {
+  Time? time;
+  String? disclaimer;
+  String? chartName;
+  Bpi? bpi;
 
-  Status({this.status, this.data, this.message});
+  EntriesData({this.time, this.disclaimer, this.chartName, this.bpi});
 
-  Status.fromJson(Map<String, dynamic> json) {
-    status = json['status'];
-    if (json['data'] != null) {
-      data = <Data>[];
-      json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
-      });
-    }
-    message = json['message'];
+  EntriesData.fromJson(Map<String, dynamic> json) {
+    time = json['time'] != null ? new Time.fromJson(json['time']) : null;
+    disclaimer = json['disclaimer'];
+    chartName = json['chartName'];
+    bpi = json['bpi'] != null ? new Bpi.fromJson(json['bpi']) : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
-    if (this.data != null) {
-      data['data'] = this.data!.map((v) => v.toJson()).toList();
+    if (this.time != null) {
+      data['time'] = this.time!.toJson();
     }
-    data['message'] = this.message;
+    data['disclaimer'] = this.disclaimer;
+    data['chartName'] = this.chartName;
+    if (this.bpi != null) {
+      data['bpi'] = this.bpi!.toJson();
+    }
     return data;
   }
 }
 
-class Data {
-  int? id;
-  String? employeeName;
-  int? employeeSalary;
-  int? employeeAge;
-  String? profileImage;
+class Time {
+  String? updated;
+  String? updatedISO;
+  String? updateduk;
 
-  Data(
-      {this.id,
-      this.employeeName,
-      this.employeeSalary,
-      this.employeeAge,
-      this.profileImage});
+  Time({this.updated, this.updatedISO, this.updateduk});
 
-  Data.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    employeeName = json['employee_name'];
-    employeeSalary = json['employee_salary'];
-    employeeAge = json['employee_age'];
-    profileImage = json['profile_image'];
+  Time.fromJson(Map<String, dynamic> json) {
+    updated = json['updated'];
+    updatedISO = json['updatedISO'];
+    updateduk = json['updateduk'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['employee_name'] = this.employeeName;
-    data['employee_salary'] = this.employeeSalary;
-    data['employee_age'] = this.employeeAge;
-    data['profile_image'] = this.profileImage;
+    data['updated'] = this.updated;
+    data['updatedISO'] = this.updatedISO;
+    data['updateduk'] = this.updateduk;
+    return data;
+  }
+}
+
+class Bpi {
+  USD? uSD;
+  USD? gBP;
+  USD? eUR;
+
+  Bpi({this.uSD, this.gBP, this.eUR});
+
+  Bpi.fromJson(Map<String, dynamic> json) {
+    uSD = json['USD'] != null ? new USD.fromJson(json['USD']) : null;
+    gBP = json['GBP'] != null ? new USD.fromJson(json['GBP']) : null;
+    eUR = json['EUR'] != null ? new USD.fromJson(json['EUR']) : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.uSD != null) {
+      data['USD'] = this.uSD!.toJson();
+    }
+    if (this.gBP != null) {
+      data['GBP'] = this.gBP!.toJson();
+    }
+    if (this.eUR != null) {
+      data['EUR'] = this.eUR!.toJson();
+    }
+    return data;
+  }
+}
+
+class USD {
+  String? code;
+  String? symbol;
+  String? rate;
+  String? description;
+  double? rateFloat;
+
+  USD({this.code, this.symbol, this.rate, this.description, this.rateFloat});
+
+  USD.fromJson(Map<String, dynamic> json) {
+    code = json['code'];
+    symbol = json['symbol'];
+    rate = json['rate'];
+    description = json['description'];
+    rateFloat = json['rate_float'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['code'] = this.code;
+    data['symbol'] = this.symbol;
+    data['rate'] = this.rate;
+    data['description'] = this.description;
+    data['rate_float'] = this.rateFloat;
     return data;
   }
 }
